@@ -3,12 +3,13 @@
 Summary:	Use a Razor catalogue server to filter spam messages
 Name:		perl-Razor-Agent
 Version:	2.84
-Release:	%mkrel 1
+Release:	%mkrel 2
 Group:		Networking/Mail
 License:	Artistic
 URL:		http://razor.sourceforge.net
 Source0:	http://prdownloads.sourceforge.net/razor/%{pkgname}-%{version}.tar.bz2
 Requires:	perl-Net-DNS
+Requires:	hping2
 BuildRequires:	perl-devel
 BuildRequires:	perl-Net-DNS
 BuildRequires:	perl-Digest-SHA1
@@ -37,6 +38,7 @@ rest of the Filtering Agents on the network.
 %setup -q -n %{pkgname}-%{version}
 
 %build
+%serverbuild
 
 %{__perl} Makefile.PL INSTALLDIRS=vendor
 
@@ -44,7 +46,7 @@ pushd Razor2-Preproc-deHTMLxs
     %{__perl} Makefile.PL INSTALLDIRS=vendor
 popd
 
-%make OPTIMIZE="%{optflags}" 
+%make OPTIMIZE="$CFLAGS" 
 
 %check
 make test
@@ -65,15 +67,49 @@ popd
 install -d %{buildroot}%{_mandir}/man5
 install -m0644 blib/man5/*.5 %{buildroot}%{_mandir}/man5
 
+# fix some defaults
+install -d %{buildroot}%{_sysconfdir}/logrotate.d
+install -d %{buildroot}/var/log/razor
+install -d %{buildroot}%{_sysconfdir}/razor
+
+cat > %{buildroot}%{_sysconfdir}/razor/razor-agent.conf << EOF
+logfile                = /var/log/razor/razor-agent.log
+EOF
+
+# fix logrotating
+cat > %{buildroot}%{_sysconfdir}/logrotate.d/razor-agent << EOF
+/var/log/razor/razor-agent.log {
+    # create 644 root root
+    weekly
+    notifempty
+    missingok
+    compress
+}
+EOF
+
+%post
+# only do this if we have a working network and if the config file contains just one line
+if [ "`cat %{_sysconfdir}/razor/razor-agent.conf|wc -l`" -eq "1" ] ; then
+    if /usr/sbin/hping -c 4 -p 2703 --tcpexitcode discovery.razor.cloudmark.com >/dev/null 2>&1; then
+        %{_bindir}/razor-admin -d -create -home=%{_sysconfdir}/razor
+    else
+        echo "You might want to run \"%{_bindir}/razor-admin -d -create -home=%{_sysconfdir}/razor\" when your network works"
+    fi
+fi
+
 %clean
 rm -rf %{buildroot}
 
 %files
 %defattr (-, root, root)
 %doc BUGS CREDITS Changes FAQ README SERVICE_POLICY
+%attr(0755,root,root) %dir %{_sysconfdir}/razor
+%attr(0644,root,root) %config(noreplace) %{_sysconfdir}/razor/razor-agent.conf
+%attr(0644,root,root) %config(noreplace) %{_sysconfdir}/logrotate.d/razor-agent
 %{_bindir}/*
 %{perl_vendorlib}/Razor2
 %{perl_vendorlib}/auto/Razor2
 %{perl_vendorarch}/Razor2
 %{perl_vendorarch}/auto/Razor2
 %{_datadir}/man/*/*
+%attr(0755,root,root) %dir /var/log/razor
