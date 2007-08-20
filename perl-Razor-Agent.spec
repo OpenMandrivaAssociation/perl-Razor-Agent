@@ -111,5 +111,5 @@ rm -rf %{buildroot}
 %{perl_vendorlib}/auto/Razor2
 %{perl_vendorarch}/Razor2
 %{perl_vendorarch}/auto/Razor2
-%{_datadir}/man/*/*
+%{_mandir}/*/*
 %attr(0755,root,root) %dir /var/log/razor
