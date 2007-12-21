@@ -17,6 +17,7 @@ BuildRequires:	perl-MailTools
 BuildRequires:	perl-Time-HiRes
 BuildRequires:	perl-URI
 BuildRequires:	perl-MIME-Base64
+BuildRoot:	%{_tmppath}/%{name}-%{version}-builroot
 
 %description
 Vipul's Razor is a distributed, collaborative, spam detection and filtering
