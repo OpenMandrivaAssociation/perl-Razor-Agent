@@ -38,8 +38,6 @@ rest of the Filtering Agents on the network.
 %setup -q -n %{pkgname}-%{version}
 
 %build
-%serverbuild
-
 %{__perl} Makefile.PL INSTALLDIRS=vendor
 
 pushd Razor2-Preproc-deHTMLxs
