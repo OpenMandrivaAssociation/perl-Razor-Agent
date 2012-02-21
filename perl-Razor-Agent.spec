@@ -3,7 +3,7 @@
 Summary:	Use a Razor catalogue server to filter spam messages
 Name:		perl-Razor-Agent
 Version:	2.85
-Release:	9
+Release:	10
 Group:		Networking/Mail
 License:	Artistic License 2.0
 URL:		http://razor.sourceforge.net
@@ -38,13 +38,14 @@ rest of the Filtering Agents on the network.
 %setup -q -n %{pkgname}-%{version}
 
 %build
+%serverbuild
 %{__perl} Makefile.PL INSTALLDIRS=vendor
 
 pushd Razor2-Preproc-deHTMLxs
     %{__perl} Makefile.PL INSTALLDIRS=vendor
 popd
 
-%make OPTIMIZE="$CFLAGS" 
+%make OPTIMIZE="$CFLAGS"
 
 %check
 make test
