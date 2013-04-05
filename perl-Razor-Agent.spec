@@ -1,5 +1,7 @@
 %define pkgname razor-agents
 
+%define debug_package %{nil}
+
 Summary:	Use a Razor catalogue server to filter spam messages
 Name:		perl-Razor-Agent
 Version:	2.85
@@ -17,7 +19,6 @@ BuildRequires:	perl-MailTools
 BuildRequires:	perl-Time-HiRes
 BuildRequires:	perl-URI
 BuildRequires:	perl-MIME-Base64
-BuildRoot:	%{_tmppath}/%{name}-%{version}-builroot
 
 %description
 Vipul's Razor is a distributed, collaborative, spam detection and filtering
@@ -114,7 +115,7 @@ rm -rf %{buildroot}
 
 
 %changelog
-* Sun Feb 12 2012 Per Øyvind Karlsen <peroyvind@mandriva.org> 2.85-9
+* Sun Feb 12 2012 Per Ã˜yvind Karlsen <peroyvind@mandriva.org> 2.85-9
 + Revision: 773477
 - drop %%serverbuild...
 - svn commit -m mass rebuild of perl extension against perl 5.14.2
@@ -132,7 +133,7 @@ rm -rf %{buildroot}
 + Revision: 564577
 - rebuild for perl 5.12.1
 
-  + Jérôme Quelin <jquelin@mandriva.org>
+  + JÃ©rÃ´me Quelin <jquelin@mandriva.org>
     - rebuild for perl 5.12
 
 * Thu Sep 03 2009 Christophe Fergeau <cfergeau@mandriva.com> 2.85-2mdv2010.1
@@ -188,10 +189,10 @@ rm -rf %{buildroot}
 * Mon Jul 04 2005 Frederic Crozat <fcrozat@mandriva.com> 2.74-1mdk 
 - Release 2.74
 
-* Tue Jun 21 2005 G�tz Waschk <waschk@mandriva.org> 2.72-2mdk
+* Tue Jun 21 2005 Götz Waschk <waschk@mandriva.org> 2.72-2mdk
 - drop the symlinks (thanks to Daniel J McDonald)
 
-* Fri Jun 17 2005 G�tz Waschk <waschk@mandriva.org> 2.72-1mdk
+* Fri Jun 17 2005 Götz Waschk <waschk@mandriva.org> 2.72-1mdk
 - New release 2.72
 
 * Wed Dec 29 2004 Frederic Crozat <fcrozat@mandrakesoft.com> 2.67-1mdk 
@@ -217,7 +218,7 @@ rm -rf %{buildroot}
  - added rediffed P0 taken from the spamassassin v2.60 tarball
  - misc spec file fixes
 
-* Mon Aug 18 2003 Per �yvind Karlsen <peroyvind@linux-mandrake.com> 2.36-1mdk
+* Mon Aug 18 2003 Per Øyvind Karlsen <peroyvind@linux-mandrake.com> 2.36-1mdk
 - 2.36
 - use %%makeinstall_std macro
 
