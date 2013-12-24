@@ -1,2 +1,4 @@
+removed_sources:
+  razor-agents-2.85.tar.bz2: bf5797ae9faf20f7e3635883767a95cdf0739ba9
 sources:
-  "razor-agents-2.85.tar.bz2": bf5797ae9faf20f7e3635883767a95cdf0739ba9
+  razor-agents-2.152.tar.gz: 080c5132d61cfee1dd4da904d27678cee407791d
