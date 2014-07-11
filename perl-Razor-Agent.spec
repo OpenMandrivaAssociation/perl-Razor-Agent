@@ -5,7 +5,7 @@
 Summary:	Use a Razor catalogue server to filter spam messages
 Name:		perl-Razor-Agent
 Version:	%perl_convert_version %{upstream_version}
-Release:	15
+Release:	16
 Group:		Networking/Mail
 License:	Artistic License 2.0
 Url:		http://razor.sourceforge.net
