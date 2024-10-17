@@ -8,7 +8,7 @@ Version:	%perl_convert_version %{upstream_version}
 Release:	22
 Group:		Networking/Mail
 License:	Artistic License 2.0
-Url:		http://razor.sourceforge.net
+Url:		https://razor.sourceforge.net
 Source0:	http://prdownloads.sourceforge.net/razor/%{pkgname}-%{upstream_version}.tar.bz2
 BuildRequires:	perl-devel
 BuildRequires:	perl-Net-DNS
