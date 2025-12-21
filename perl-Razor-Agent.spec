@@ -10,6 +10,7 @@ Group:		Networking/Mail
 License:	Artistic License 2.0
 Url:		https://razor.sourceforge.net
 Source0:	http://prdownloads.sourceforge.net/razor/%{pkgname}-%{upstream_version}.tar.bz2
+BuildRequires:	make
 BuildRequires:	perl-devel
 BuildRequires:	perl-Net-DNS
 BuildRequires:	perl-Digest-SHA1
