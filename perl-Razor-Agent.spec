@@ -1,15 +1,13 @@
 %define debug_package %{nil}
 %define pkgname razor-agents
-%define upstream_version 2.85
-
 Summary:	Use a Razor catalogue server to filter spam messages
 Name:		perl-Razor-Agent
-Version:	%{upstream_version}
-Release:	23
+Version:	2.85
+Release:	24
 Group:		Networking/Mail
 License:	Artistic License 2.0
 Url:		https://razor.sourceforge.net
-Source0:	http://prdownloads.sourceforge.net/razor/%{pkgname}-%{upstream_version}.tar.bz2
+Source0:	http://prdownloads.sourceforge.net/razor/%{pkgname}-%{version}.tar.bz2
 BuildRequires:	make
 BuildRequires:	perl-devel
 BuildRequires:	perl-Net-DNS
@@ -36,7 +34,7 @@ once identified and reported by a Reporting Agent, can be blocked out by the
 rest of the Filtering Agents on the network.
 
 %prep
-%setup -qn %{pkgname}-%{upstream_version}
+%setup -qn %{pkgname}-%{version}
 
 %build
 %__perl Makefile.PL INSTALLDIRS=vendor
